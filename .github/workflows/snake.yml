@@ -1,28 +1,35 @@
 name: Generate Snake Animation
 
 on:
-  schedule:
-    - cron: "0 0 * * *"  # Executa a cada dia à meia-noite
-  workflow_dispatch:
+  workflow_dispatch: # Permite que o workflow seja acionado manualmente
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v2
+    - name: Check out the repository
+      uses: actions/checkout@v2
 
-      - name: Generate Snake animation
-        uses: Platane/snk@master
-        with:
-          github_user_name: JoseVenancioDev
-          outputs: dist/snake.svg
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18' # Versão do Node.js, ajuste conforme necessário
 
-      - name: Push generated snake.svg to the output branch
-        uses: crazy-max/ghaction-github-pages@v2.1.3
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Install dependencies
+      run: npm install # Ou qualquer outro comando necessário para instalar dependências
+
+    - name: Generate Snake Animation
+      run: npm run build # Comando para gerar a animação, ajuste conforme seu projeto
+
+    - name: Create build directory
+      run: mkdir -p ./build # Cria o diretório de build se não existir
+
+    - name: Move build files
+      run: mv ./dist/* ./build/ # Move os arquivos gerados para o diretório de build, ajuste conforme necessário
+
+    - name: Deploy to GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2.1.3
+      with:
+        publish_dir: ./build # Diretório que contém os arquivos gerados
+        github_token: ${{ secrets.GITHUB_TOKEN }} # Token para autenticação
