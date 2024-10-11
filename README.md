@@ -44,6 +44,6 @@
 
 <br clear="both">
 
-<img src="https://raw.githubusercontent.com/JoseVenancioDev/JoseVenancioDev/output/snake.svg" alt="Snake animation" />
+![Snake animation](https://github.com/JoseVenancioDev/JoseVenancioDev/.github/workflowssnake.svg)
 
 ###
