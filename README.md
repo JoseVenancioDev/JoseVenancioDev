@@ -44,6 +44,6 @@
 
 <br clear="both">
 
-![Snake animation](https://github.com/JoseVenancioDev/JoseVenancioDev/.github/workflowssnake.svg)
+![Snake animation](https://github.com/JoseVenancioDev/JoseVenancioDev/blob/output/snake.svg)
 
 ###
